@@ -1,14 +1,14 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "com.example",
-		"id": "example_mod",
+		"group": "io.github.bnnuycorps.flamingoh",
+		"id": "flamingoh",
 		"version": "${version}",
 		"metadata": {
-			"name": "Mod Name",
-			"description": "A short description of your mod.",
+			"name": "Flamingo-oh-oh-oh",
+			"description": "Flamingos",
 			"contributors": {
-				"Your name here": "Owner"
+				"Your name here": "remote_getaway"
 			},
 			"contact": {
 				"homepage": "https://example.com/",
@@ -19,7 +19,8 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "com.example.example_mod.ExampleMod"
+			"init": "io.github.bnnuycorps.flamingoh.Main",
+			"client_init": "io.github.bnnuycorps.flamingoh.ClientInitializer"
 		},
 		"depends": [
 			{
@@ -36,5 +37,5 @@
 			}
 		]
 	},
-	"mixin": "example_mod.mixins.json"
+	"mixin": "flamingoh.mixins.json"
 }

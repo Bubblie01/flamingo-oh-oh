@@ -1,0 +1,52 @@
+package io.github.bnnuycorps.flamingoh.entities;
+
+import io.github.bnnuycorps.flamingoh.Main;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
+import org.quiltmc.qsl.entity.impl.QuiltEntityType;
+
+public class FlamingoEntity extends AnimalEntity {
+
+	public static final EntityType<FlamingoEntity> FLAMINGO_ENTITY_TYPE = Registry.register(Registries.ENTITY_TYPE, new Identifier(Main.MOD_ID, "flamingo_entity"), QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, FlamingoEntity::new).setDimensions(EntityDimensions.changing(1.0f,2.1f)).build());
+
+	protected FlamingoEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+		super(entityType, world);
+	}
+
+	@Override
+	protected void initGoals() {
+		this.goalSelector.add(0, new EscapeDangerGoal(this, 1.0));
+		//this.goalSelector.add(1, new TemptGoal(this, 1.0, false, Ingredient.ofItems(Items.SHRIMP)));
+		this.goalSelector.add(2, new AnimalMateGoal(this, 0.3));
+		this.goalSelector.add(3, new WanderAroundGoal(this, 0.8));
+		this.goalSelector.add(5, new LookAroundGoal(this));
+		//this.goalSelector.add(6, new DeepSwimGoal(this));
+		this.goalSelector.add(7, new FollowParentGoal(this, 1.0));
+		this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 6F));
+		this.goalSelector.add(9, new LookAtEntityGoal(this, FlamingoEntity.class, 6F));
+	}
+
+	@Nullable
+	@Override
+	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+		return FLAMINGO_ENTITY_TYPE.create(world);
+	}
+
+	public static void registerFlamingoEntityAttributes() {
+		FabricDefaultAttributeRegistry.register(FLAMINGO_ENTITY_TYPE, createAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5.0f).add(EntityAttributes.GENERIC_MAX_HEALTH, 8f));
+	}
+}
