@@ -1,13 +1,11 @@
 package io.github.bnnuycorps.flamingoh.entities.models;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.bnnuycorps.flamingoh.Main;
 import io.github.bnnuycorps.flamingoh.entities.FlamingoEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelPartNames;
-import net.minecraft.client.render.entity.model.QuadrupedEntityModel;
+import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
@@ -17,7 +15,8 @@ public class FlamingoEntityModel<FlamingoEntity> extends EntityModel<io.github.b
 private final ModelPart head;
 private final ModelPart neck;
 private final ModelPart main_body;
-private final ModelPart wings;
+private final ModelPart wing_right;
+private final ModelPart wing_left;
 private final ModelPart leg_left;
 private final ModelPart leg_right;
 
@@ -30,7 +29,9 @@ private final ModelPart leg_right;
 
 		this.main_body = root.getChild("main_body");
 
-		this.wings = root.getChild("wings");
+		this.wing_right = root.getChild("wing_right");
+
+		this.wing_left = root.getChild("wing_left");
 
 		this.leg_left = root.getChild("leg_left");
 
@@ -72,12 +73,15 @@ private final ModelPart leg_right;
 
 		ModelPartData front_main_body = main_body.addChild("front_main_body", ModelPartBuilder.create().uv(47, 12).cuboid(-2.0F, -2.75F, -6.0F, 3.0F, 1.0F, 1.0F, new Dilation(0.0F))
 				.uv(34, 13).cuboid(-3.0F, -1.75F, -6.0F, 5.0F, 4.0F, 1.0F, new Dilation(0.0F))
-				.uv(47, 12).cuboid(-2.0F, 2.25F, -6.0F, 3.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.5F, 1.0F, 1.25F));
+				.uv(47, 10).cuboid(-2.0F, 2.25F, -6.0F, 3.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.5F, 1.0F, 1.25F));
 
-		ModelPartData wings = modelPartData.addChild("wings", ModelPartBuilder.create(), ModelTransform.pivot(-0.5F, 4.5F, -2.5F));
+		ModelPartData wing_right = modelPartData.addChild("wing_right", ModelPartBuilder.create(), ModelTransform.pivot(-4.5F, 3.5F, 1.5F));
 
-		ModelPartData wing_right_r1 = wings.addChild("wing_right_r1", ModelPartBuilder.create().uv(34, 21).cuboid(-8.5F, -2.5F, -3.75F, 1.0F, 7.0F, 9.0F, new Dilation(0.0F))
-				.uv(34, 21).cuboid(-0.5F, -2.5F, -3.75F, 1.0F, 7.0F, 9.0F, new Dilation(0.0F)), ModelTransform.of(4.0F, 0.75F, 3.5F, -0.1745F, 0.0F, 0.0F));
+		ModelPartData wing_right_r1 = wing_right.addChild("wing_right_r1", ModelPartBuilder.create().uv(34, 21).cuboid(-0.5F, -0.635F, -4.435F, 1.0F, 7.0F, 9.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.1745F, 0.0F, 0.0F));
+
+		ModelPartData wing_left = modelPartData.addChild("wing_left", ModelPartBuilder.create(), ModelTransform.pivot(3.5F, 3.5F, 1.5F));
+
+		ModelPartData wing_left_r1 = wing_left.addChild("wing_left_r1", ModelPartBuilder.create().uv(34, 21).cuboid(-0.5F, -0.6805F, -3.9141F, 1.0F, 7.0F, 9.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, -0.1745F, 0.0F, 0.0F));
 
 		ModelPartData leg_left = modelPartData.addChild("leg_left", ModelPartBuilder.create().uv(55, 9).cuboid(-1.0F, 6.75F, 0.25F, 2.0F, 1.0F, 2.0F, new Dilation(0.0F))
 				.uv(55, 21).cuboid(-0.75F, 13.0F, -1.2F, 1.5F, 0.25F, 2.0F, new Dilation(0.0F))
@@ -101,15 +105,17 @@ private final ModelPart leg_right;
 		return TexturedModelData.of(modelData, 64, 64);
 	}
 
-@Override
-public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-		head.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		neck.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		main_body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		wings.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		leg_left.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-		leg_right.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	@Override
+	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+			this.head.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
+			this.neck.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
+			this.main_body.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
+			this.leg_left.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
+			this.leg_right.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
+			this.wing_left.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
+			this.wing_right.render(matrices,vertexConsumer,light,overlay,red,green,blue,alpha);
 		}
+
 
 	@Override
 	public void setAngles(io.github.bnnuycorps.flamingoh.entities.FlamingoEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
@@ -117,6 +123,7 @@ public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int ligh
 		this.head.yaw = headYaw * (float) (Math.PI / 180.0);
 		this.leg_right.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
 		this.leg_left.pitch = MathHelper.cos(limbAngle * 0.6662F + (float) Math.PI) * 1.4F * limbDistance;
-		this.wings.getChild("wing_right_r1").pitch = MathHelper.cos(limbAngle * 0.6662F + (float) Math.PI) * 1.4F * limbDistance;
+		this.wing_right.roll = animationProgress;
+		this.wing_left.roll = -animationProgress;
 	}
 }

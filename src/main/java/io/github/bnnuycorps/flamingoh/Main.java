@@ -15,5 +15,6 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize(ModContainer mod) {
 		FlamingoEntity.registerFlamingoEntityAttributes();
+		FlamingohRegistry.registerItems();
 	}
 }
