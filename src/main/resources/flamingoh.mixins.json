@@ -6,7 +6,8 @@
 	"mixins": [],
 	"client": [
       "TitleScreenMixin",
-      "FireworkStarRecipeMixin"
+      "FireworkStarRecipeMixin",
+      "InGameHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

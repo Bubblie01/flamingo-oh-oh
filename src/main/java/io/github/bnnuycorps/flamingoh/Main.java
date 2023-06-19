@@ -16,5 +16,7 @@ public class Main implements ModInitializer {
 	public void onInitialize(ModContainer mod) {
 		FlamingoEntity.registerFlamingoEntityAttributes();
 		FlamingohRegistry.registerItems();
+		FlamingohRegistry.registerRecipies();
+		FlamingohRegistry.registerStatusEffects();
 	}
 }
