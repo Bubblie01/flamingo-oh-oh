@@ -32,7 +32,7 @@ public class FlamingoEntity extends AnimalEntity {
 	public float prevMaxWingDeviation;
 	public float prevFlapProgress;
 	public float flapSpeed = 1.0F;
-	private float nextFlap = 1.0F;
+	//private float nextFlap = 1.0F;
 	protected FlamingoEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -41,7 +41,7 @@ public class FlamingoEntity extends AnimalEntity {
 	protected void initGoals() {
 		this.goalSelector.add(0, new EscapeDangerGoal(this, 1.0));
 		this.goalSelector.add(1, new TemptGoal(this, 1.0, Ingredient.ofItems(FlamingohRegistry.SHRIMP_ITEM), false));
-		this.goalSelector.add(2, new AnimalMateGoal(this, 0.3));
+		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0));
 		this.goalSelector.add(3, new WanderAroundGoal(this, 0.8));
 		this.goalSelector.add(5, new LookAroundGoal(this));
 		this.goalSelector.add(6, new SwimGoal(this));

@@ -3,9 +3,9 @@ package io.github.bnnuycorps.flamingoh.effects;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
 
-public class FlamingoStatusEffect extends StatusEffect {
+public class ShrimpStatusEffect extends StatusEffect {
 
-	public FlamingoStatusEffect() {
+	public ShrimpStatusEffect() {
 		super(StatusEffectType.NEUTRAL, 0xFFB6C1);
 	}
 }
