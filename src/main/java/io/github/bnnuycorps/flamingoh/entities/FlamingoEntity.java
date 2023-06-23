@@ -19,6 +19,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 import org.quiltmc.qsl.entity.impl.QuiltEntityType;
@@ -67,6 +68,7 @@ public class FlamingoEntity extends AnimalEntity {
 			this.flapSpeed = 1.0F;
 		}
 	}
+
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
