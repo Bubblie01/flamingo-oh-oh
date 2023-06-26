@@ -71,11 +71,11 @@ private final ModelPart leg_right;
 
 		ModelPartData tail_main_body = main_body.addChild("tail_main_body", ModelPartBuilder.create(), ModelTransform.pivot(0.5F, 1.0F, 1.25F));
 
-		ModelPartData tail_main_body_3_r1 = tail_main_body.addChild("tail_main_body_3_r1", ModelPartBuilder.create().uv(31, 23).cuboid(-2.5F, -1.25F, -3.5F, 4.0F, 4.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 1.5726F, 11.4718F, -0.2618F, 0.0F, 0.0F));
+		ModelPartData tail_main_body_3_r1 = tail_main_body.addChild("tail_main_body_3_r1", ModelPartBuilder.create().uv(31, 23).cuboid(-2.5F, -1.25F, -3.5F, 4.0F, 4.0F, 1.25F, new Dilation(0.0F)), ModelTransform.of(0.0F, 1.5726F, 11.4718F, -0.2618F, 0.0F, 0.0F));
 
-		ModelPartData tail_main_body_2_r1 = tail_main_body.addChild("tail_main_body_2_r1", ModelPartBuilder.create().uv(17, 21).cuboid(-3.0F, -2.75F, -4.0F, 5.0F, 6.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.9564F, 11.0019F, -0.1745F, 0.0F, 0.0F));
+		ModelPartData tail_main_body_2_r1 = tail_main_body.addChild("tail_main_body_2_r1", ModelPartBuilder.create().uv(17, 21).cuboid(-3.0F, -2.75F, -4.0F, 5.0F, 6.0F, 1.25F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.9564F, 11.0019F, -0.1745F, 0.0F, 0.0F));
 
-		ModelPartData tail_main_body_1_r1 = tail_main_body.addChild("tail_main_body_1_r1", ModelPartBuilder.create().uv(0, 19).cuboid(-3.0F, -3.75F, -1.75F, 6.0F, 7.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(-0.5F, 0.0F, 7.0F, -0.1309F, 0.0F, 0.0F));
+		ModelPartData tail_main_body_1_r1 = tail_main_body.addChild("tail_main_body_1_r1", ModelPartBuilder.create().uv(0, 19).cuboid(-3.0F, -3.75F, -1.75F, 6.0F, 7.5F, 2.0F, new Dilation(0.0F)), ModelTransform.of(-0.5F, 0.0F, 7.0F, -0.1309F, 0.0F, 0.0F));
 
 		ModelPartData front_main_body = main_body.addChild("front_main_body", ModelPartBuilder.create().uv(47, 12).cuboid(-2.0F, -2.75F, -6.0F, 3.0F, 1.0F, 1.0F, new Dilation(0.0F))
 				.uv(34, 13).cuboid(-3.0F, -1.75F, -6.0F, 5.0F, 4.0F, 1.0F, new Dilation(0.0F))
@@ -91,28 +91,28 @@ private final ModelPart leg_right;
 
 		ModelPartData leg_left = root.addChild("leg_left", ModelPartBuilder.create(), ModelTransform.pivot(1.5F, 4.75F, -1.25F));
 
-		ModelPartData up_leg = leg_left.addChild("up_leg", ModelPartBuilder.create(), ModelTransform.of(0.0F, 0.25F, 0.75F, 1.1781F, 0.0F, 0.0F));
+		ModelPartData up_leg = leg_left.addChild("up_leg", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.25F, 0.75F));
 
 		ModelPartData leg_left_top_r1 = up_leg.addChild("leg_left_top_r1", ModelPartBuilder.create().uv(57, 0).cuboid(-0.5F, -3.5F, -0.5F, 1.0F, 7.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 3.25F, 0.25F, 0.0873F, 0.0F, 0.0F));
 
-		ModelPartData leg_left_body_r1 = up_leg.addChild("leg_left_body_r1", ModelPartBuilder.create().uv(28, 41).cuboid(-0.75F, -0.625F, -0.75F, 1.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.1369F, -0.0224F, 0.0873F, 0.0F, 0.0F));
+		ModelPartData leg_left_body_r1 = up_leg.addChild("leg_left_body_r1", ModelPartBuilder.create().uv(28, 41).cuboid(-0.75F, -0.625F, -0.75F, 1.5F, 1.25F, 1.5F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.1369F, -0.0224F, 0.0873F, 0.0F, 0.0F));
 
-		ModelPartData knee_leg = leg_left.addChild("knee_leg", ModelPartBuilder.create().uv(55, 9).cuboid(-1.0F, -0.5149F, -1.0615F, 2.0F, 1.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 2.2649F, 7.3115F, -0.9599F, 0.0F, 0.0F));
+		ModelPartData knee_leg = leg_left.addChild("knee_leg", ModelPartBuilder.create().uv(55, 9).cuboid(-1.0F, -0.5149F, -1.0615F, 2.0F, 1.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 7.2649F, 1.3115F));
 
 		ModelPartData leg_left_bottom_r1 = knee_leg.addChild("leg_left_bottom_r1", ModelPartBuilder.create().uv(57, 13).cuboid(-0.5F, -3.1149F, -0.5F, 1.0F, 6.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 3.0F, -0.5F, -0.1745F, 0.0F, 0.0F));
 
-		ModelPartData feet = leg_left.addChild("feet", ModelPartBuilder.create().uv(55, 21).cuboid(-0.76F, -0.175F, -1.95F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
-				.uv(57, 24).cuboid(-0.25F, -0.175F, -2.25F, 0.0F, 0.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.01F, 5.175F, 2.25F, 2.9234F, 0.0F, 0.0F));
+		ModelPartData feet = leg_left.addChild("feet", ModelPartBuilder.create().uv(55, 21).cuboid(-0.76F, -0.175F, -1.95F, 1.5F, 0.25F, 2.0F, new Dilation(0.0F))
+				.uv(57, 24).cuboid(-0.25F, -0.175F, -2.25F, 0.5F, 0.25F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(0.01F, 13.175F, 0.75F));
 
 		ModelPartData leg_right = root.addChild("leg_right", ModelPartBuilder.create().uv(55, 9).cuboid(-1.0F, 6.75F, 0.25F, 2.0F, 1.0F, 2.0F, new Dilation(0.0F))
-				.uv(55, 21).cuboid(-0.75F, 13.0F, -1.2F, 1.0F, 0.0F, 2.0F, new Dilation(0.0F))
-				.uv(57, 24).cuboid(-0.24F, 13.0F, -1.5F, 0.0F, 0.0F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(-1.5F, 4.75F, -1.25F));
+				.uv(55, 21).cuboid(-0.75F, 13.0F, -1.2F, 1.5F, 0.25F, 2.0F, new Dilation(0.0F))
+				.uv(57, 24).cuboid(-0.24F, 13.0F, -1.5F, 0.5F, 0.25F, 1.0F, new Dilation(0.0F)), ModelTransform.pivot(-1.5F, 4.75F, -1.25F));
 
 		ModelPartData leg_right_bottom_r1 = leg_right.addChild("leg_right_bottom_r1", ModelPartBuilder.create().uv(57, 13).cuboid(-0.5F, -3.1149F, -0.5F, 1.0F, 6.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 10.2649F, 0.8115F, -0.1745F, 0.0F, 0.0F));
 
 		ModelPartData leg_right_top_r1 = leg_right.addChild("leg_right_top_r1", ModelPartBuilder.create().uv(57, 0).cuboid(-0.5F, -3.5F, -0.5F, 1.0F, 7.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 3.5F, 1.0F, 0.0873F, 0.0F, 0.0F));
 
-		ModelPartData leg_right_body_r1 = leg_right.addChild("leg_right_body_r1", ModelPartBuilder.create().uv(48, 15).cuboid(-0.75F, -0.625F, -0.75F, 1.0F, 1.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.3869F, 0.7276F, 0.0873F, 0.0F, 0.0F));
+		ModelPartData leg_right_body_r1 = leg_right.addChild("leg_right_body_r1", ModelPartBuilder.create().uv(48, 15).cuboid(-0.75F, -0.625F, -0.75F, 1.5F, 1.25F, 1.5F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.3869F, 0.7276F, 0.0873F, 0.0F, 0.0F));
 		return TexturedModelData.of(modelData, 64, 64);
 	}
 

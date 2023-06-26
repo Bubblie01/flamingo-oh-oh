@@ -2,6 +2,7 @@ package io.github.bnnuycorps.flamingoh.entities;
 
 import io.github.bnnuycorps.flamingoh.FlamingohRegistry;
 import io.github.bnnuycorps.flamingoh.Main;
+import io.github.bnnuycorps.flamingoh.entities.ai.FlamingoSwimGoal;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -18,6 +19,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
@@ -34,6 +36,7 @@ public class FlamingoEntity extends AnimalEntity {
 	public float prevFlapProgress;
 	public float flapSpeed = 1.0F;
 	//private float nextFlap = 1.0F;
+	public int eggLayTime = this.random.nextInt(6000) + 6000;
 	protected FlamingoEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -45,7 +48,7 @@ public class FlamingoEntity extends AnimalEntity {
 		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0));
 		this.goalSelector.add(3, new WanderAroundGoal(this, 0.8));
 		this.goalSelector.add(5, new LookAroundGoal(this));
-		this.goalSelector.add(6, new SwimGoal(this));
+		this.goalSelector.add(6, new FlamingoSwimGoal(this));
 		this.goalSelector.add(7, new FollowParentGoal(this, 1.0));
 		this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 6F));
 		this.goalSelector.add(9, new LookAtEntityGoal(this, FlamingoEntity.class, 6F));
@@ -67,8 +70,18 @@ public class FlamingoEntity extends AnimalEntity {
 		if (!this.isOnGround() && this.flapSpeed < 1.0F) {
 			this.flapSpeed = 1.0F;
 		}
+		//if(isTouchingWater())
+			//this.setMovementSpeed(this.getMovementSpeed()+2.0f);
 	}
 
+	@Override
+	public void travel(Vec3d movementInput) {
+		super.travel(movementInput);
+		if(this.isTouchingWater())
+			this.updateVelocity(0.1f,movementInput);
+
+
+	}
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
