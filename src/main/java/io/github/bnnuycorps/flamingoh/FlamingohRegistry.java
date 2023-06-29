@@ -24,6 +24,10 @@ public class FlamingohRegistry {
 	public static final Item FLAMINGO_EGG_ITEM = new FlamingoEggItem(new Item.Settings());
 	public static final Item SHRIMP_ITEM = new ShrimpItem(new Item.Settings().food(SHRIMP_COMPONENT));
 
+	public static final Item SUSPICIOUS_CHICKEN = new Item(new Item.Settings().food(FoodComponents.CHICKEN));
+
+	public static final Item SUSPICIOUS_COOKED_CHICKEN = new Item(new Item.Settings().food(FoodComponents.COOKED_CHICKEN));
+
 
 	public static final StatusEffect SHRIMP_STATUS_EFFECT = new ShrimpStatusEffect();
 	public static void registerItems() {
@@ -35,6 +39,9 @@ public class FlamingohRegistry {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINKS).register(content -> {
 			content.addItem(FLAMINGO_COCKTAIL);
 			content.addItem(FLAMINGO_EGG_ITEM);
+			content.addItem(SUSPICIOUS_CHICKEN);
+			content.addItem(SUSPICIOUS_COOKED_CHICKEN);
+			content.addItem(SHRIMP_ITEM);
 		});
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(content -> {
 			content.addItem(PINK_FEATHER);
