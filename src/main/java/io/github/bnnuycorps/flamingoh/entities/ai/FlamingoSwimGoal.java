@@ -1,5 +1,6 @@
 package io.github.bnnuycorps.flamingoh.entities.ai;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.fluid.Fluids;
@@ -15,17 +16,12 @@ public class FlamingoSwimGoal extends SwimGoal {
 	}
 
 	@Override
-	public void tick() {
-
-		if (mob.isTouchingWater()) {
-			this.mob.setVelocity(this.mob.getVelocity().add(0.0, 0.005, 0.0));
-		}
-
-
-		if(mob.isSubmergedInWater()){
-			this.mob.setVelocity(this.mob.getVelocity().add(0.0, 0.03f, 0.0));
-		}
-
+	public boolean canStart() {
+		BlockState up = this.mob.getWorld().getBlockState(this.mob.getBlockPos().up());
+		BlockState down = this.mob.getWorld().getBlockState(this.mob.getBlockPos().down());
+		if(!(up.getFluidState().getFluid().matchesType(Fluids.EMPTY)) && !(down.getFluidState().getFluid().matchesType(Fluids.EMPTY)))
+			return super.canStart();
+		return false;
 	}
 }
 
