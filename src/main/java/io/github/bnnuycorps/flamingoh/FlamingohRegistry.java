@@ -36,6 +36,8 @@ public class FlamingohRegistry {
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "flamingo_egg"), FLAMINGO_EGG_ITEM);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "shrimp"), SHRIMP_ITEM);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "flamingo_spawn_egg"), FLAMINGO_SPAWN_EGG);
+		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "suspicious_chicken"), SUSPICIOUS_CHICKEN);
+		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "suspicious_cooked_chicken"), SUSPICIOUS_COOKED_CHICKEN);
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINKS).register(content -> {
 			content.addItem(FLAMINGO_COCKTAIL);
 			content.addItem(FLAMINGO_EGG_ITEM);

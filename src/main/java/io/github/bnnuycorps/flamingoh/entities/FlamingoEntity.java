@@ -13,15 +13,19 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
 import org.quiltmc.qsl.entity.impl.QuiltEntityType;
@@ -70,8 +74,14 @@ public class FlamingoEntity extends AnimalEntity {
 		if (!this.isOnGround() && this.flapSpeed < 1.0F) {
 			this.flapSpeed = 1.0F;
 		}
-		//if(isTouchingWater())
-			//this.setMovementSpeed(this.getMovementSpeed()+2.0f);
+		/*
+		if (!this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.dropItem(FlamingohRegistry.FLAMINGO_EGG_ITEM);
+			this.emitGameEvent(GameEvent.ENTITY_PLACE);
+			this.eggLayTime = this.random.nextInt(6000) + 6000;
+
+		 */
 	}
 
 	@Override
@@ -82,6 +92,22 @@ public class FlamingoEntity extends AnimalEntity {
 
 
 	}
+	/*
+	@Override
+	public void writeCustomDataToNbt(NbtCompound nbt) {
+		super.writeCustomDataToNbt(nbt);
+		nbt.putInt("EggLayTime", this.eggLayTime);
+	}
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+		super.readCustomDataFromNbt(nbt);
+		if (nbt.contains("EggLayTime")) {
+			this.eggLayTime = nbt.getInt("EggLayTime");
+		}
+	}
+
+	 */
+
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
