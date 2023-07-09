@@ -19,7 +19,7 @@ public class FlamingoSwimGoal extends SwimGoal {
 	public boolean canStart() {
 		BlockState up = this.mob.getWorld().getBlockState(this.mob.getBlockPos().up());
 		BlockState down = this.mob.getWorld().getBlockState(this.mob.getBlockPos().down());
-		if(!(up.getFluidState().getFluid().matchesType(Fluids.EMPTY)) && !(down.getFluidState().getFluid().matchesType(Fluids.EMPTY)))
+		if(!(up.getFluidState().getFluid().matchesType(Fluids.EMPTY)) || !(down.getFluidState().getFluid().matchesType(Fluids.EMPTY)))
 			return super.canStart();
 		return false;
 	}

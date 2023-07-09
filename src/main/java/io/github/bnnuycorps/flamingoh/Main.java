@@ -1,9 +1,13 @@
 package io.github.bnnuycorps.flamingoh;
 
 import io.github.bnnuycorps.flamingoh.entities.FlamingoEntity;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
@@ -29,5 +33,11 @@ public class Main implements ModInitializer {
 		FlamingohRegistry.registerStatusEffects();
 		BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.SWAMP), SpawnGroup.CREATURE, FlamingoEntity.FLAMINGO_ENTITY_TYPE, 15, 4, 4);
 		SpawnRestriction.register(FlamingoEntity.FLAMINGO_ENTITY_TYPE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, FlamingoEntity::isValidNaturalSpawn);
+
+		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+			if(LootTables.FISHING_GAMEPLAY.equals(id)) {
+				tableBuilder.modifyPools(poolBuilder -> poolBuilder.with(ItemEntry.builder(FlamingohRegistry.SHRIMP_ITEM).weight(25)));
+			}
+		});
 	}
 }
