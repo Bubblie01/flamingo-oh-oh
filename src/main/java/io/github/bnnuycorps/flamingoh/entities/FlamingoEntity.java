@@ -32,7 +32,7 @@ import org.quiltmc.qsl.entity.impl.QuiltEntityType;
 
 public class FlamingoEntity extends AnimalEntity {
 
-	public static final EntityType<FlamingoEntity> FLAMINGO_ENTITY_TYPE = Registry.register(Registries.ENTITY_TYPE, new Identifier(Main.MOD_ID, "flamingo_entity"), QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, FlamingoEntity::new).setDimensions(EntityDimensions.changing(1.0f,2.1f)).build());
+	public static final EntityType<FlamingoEntity> FLAMINGO_ENTITY_TYPE = Registry.register(Registries.ENTITY_TYPE, new Identifier(Main.MOD_ID, "flamingo_entity"), QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, FlamingoEntity::new).setDimensions(EntityDimensions.changing(1.0f, 2.1f)).build());
 
 	public float flapProgress;
 	public float maxWingDeviation;
@@ -41,6 +41,7 @@ public class FlamingoEntity extends AnimalEntity {
 	public float flapSpeed = 1.0F;
 	//private float nextFlap = 1.0F;
 	public int eggLayTime = this.random.nextInt(6000) + 6000;
+
 	protected FlamingoEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -74,47 +75,46 @@ public class FlamingoEntity extends AnimalEntity {
 		if (!this.isOnGround() && this.flapSpeed < 1.0F) {
 			this.flapSpeed = 1.0F;
 		}
-		/*
+
 		if (!this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
 			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.dropItem(FlamingohRegistry.FLAMINGO_EGG_ITEM);
 			this.emitGameEvent(GameEvent.ENTITY_PLACE);
 			this.eggLayTime = this.random.nextInt(6000) + 6000;
 
-		 */
-	}
-
-	@Override
-	public void travel(Vec3d movementInput) {
-		super.travel(movementInput);
-		if(this.isTouchingWater())
-			this.updateVelocity(0.1f,movementInput);
-
-
-	}
-	/*
-	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
-		nbt.putInt("EggLayTime", this.eggLayTime);
-	}
-	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		if (nbt.contains("EggLayTime")) {
-			this.eggLayTime = nbt.getInt("EggLayTime");
 		}
 	}
 
-	 */
+		@Override
+		public void travel (Vec3d movementInput){
+			super.travel(movementInput);
+			if (this.isTouchingWater())
+				this.updateVelocity(0.1f, movementInput);
 
 
-	@Override
-	public boolean isBreedingItem(ItemStack stack) {
-		return stack.isOf(FlamingohRegistry.SHRIMP_ITEM);
+		}
+
+		@Override
+		public void writeCustomDataToNbt (NbtCompound nbt){
+			super.writeCustomDataToNbt(nbt);
+			nbt.putInt("EggLayTime", this.eggLayTime);
+		}
+		@Override
+		public void readCustomDataFromNbt (NbtCompound nbt){
+			super.readCustomDataFromNbt(nbt);
+			if (nbt.contains("EggLayTime")) {
+				this.eggLayTime = nbt.getInt("EggLayTime");
+			}
+		}
+
+
+		@Override
+		public boolean isBreedingItem (ItemStack stack){
+			return stack.isOf(FlamingohRegistry.SHRIMP_ITEM);
+		}
+
+		public static void registerFlamingoEntityAttributes () {
+			FabricDefaultAttributeRegistry.register(FLAMINGO_ENTITY_TYPE, createAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5.0f).add(EntityAttributes.GENERIC_MAX_HEALTH, 8f));
+		}
 	}
 
-	public static void registerFlamingoEntityAttributes() {
-		FabricDefaultAttributeRegistry.register(FLAMINGO_ENTITY_TYPE, createAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5.0f).add(EntityAttributes.GENERIC_MAX_HEALTH, 8f));
-	}
-}
