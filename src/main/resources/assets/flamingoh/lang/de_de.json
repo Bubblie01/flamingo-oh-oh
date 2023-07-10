@@ -1,0 +1,21 @@
+{
+  "_credit": "Translations provided by Stevedercoole and koelle25",
+
+  "effect.flamingoh.shrimp_effect": "Geflamingot",
+
+  "entity.flamingoh.flamingo": "Flamingo",
+
+  "item.flamingoh.flamingo_spawn_egg": "Flamingo-Spawn-Ei",
+  "item.flamingoh.flamingo_egg": "Flamingoei",
+  "item.flamingoh.pink_feather": "Rosa Feder",
+
+  "item.flamingoh.shrimp": "Rohe Garnele",
+  "item.flamingoh.cooked_shrimp": "Gebratene Garnele",
+  "item.flamingoh.shrimp_cocktail": "Garnelen-Cocktail",
+
+  "item.flamingoh.suspicious_chicken": "Seltsames Hühnchen",
+  "item.flamingoh.cooked_suspicious_chicken": "Gebratenes Seltsames Hühnchen",
+
+  "subtitle.flamingo.ambient": "Flamingoschnattern",
+  "subtitle.flamingo.baby.ambient": "Baby-Flamingo-Zwitschern"
+}

@@ -1,0 +1,21 @@
+{
+  "_credit": "Translations provided by Manimanocas",
+
+  "effect.flamingoh.shrimp_effect": "Foste Flamingado",
+
+  "entity.flamingoh.flamingo": "Flamingo",
+
+  "item.flamingoh.flamingo_spawn_egg": "Ovo de Geração de Flamingo",
+  "item.flamingoh.flamingo_egg": "Ovo de Flamingo",
+  "item.flamingoh.pink_feather": "Pena Rosa",
+
+  "item.flamingoh.shrimp": "Camarão cru",
+  "item.flamingoh.cooked_shrimp": "Camarão assado",
+  "item.flamingoh.shrimp_cocktail": "Cocktail de Camarão",
+
+  "item.flamingoh.suspicious_chicken": "Galinha Suspeita",
+  "item.flamingoh.cooked_suspicious_chicken": "Galinha Suspeita assada",
+
+  "subtitle.flamingo.ambient": "O Flamingo grasna",
+  "subtitle.flamingo.baby.ambient": "O Flamingo Bébé Pia"
+}

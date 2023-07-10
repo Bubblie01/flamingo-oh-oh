@@ -1,0 +1,21 @@
+{
+  "_credit": "Translations provided by 煎餅",
+
+  "effect.flamingoh.shrimp_effect": "鶴之視野",
+
+  "entity.flamingoh.flamingo": "紅鶴",
+
+  "item.flamingoh.flamingo_spawn_egg": "紅鶴生怪蛋",
+  "item.flamingoh.flamingo_egg": "鶴蛋",
+  "item.flamingoh.pink_feather": "鶴羽",
+
+  "item.flamingoh.shrimp": "生蝦",
+  "item.flamingoh.cooked_shrimp": "烤蝦",
+  "item.flamingoh.shrimp_cocktail": "鮮蝦雞尾酒",
+
+  "item.flamingoh.suspicious_chicken": "生鶴肉",
+  "item.flamingoh.cooked_suspicious_chicken": "烤鶴肉",
+
+  "subtitle.flamingo.ambient": "成年紅鶴鳴叫",
+  "subtitle.flamingo.baby.ambient": "幼年紅鶴吱喳聲"
+}

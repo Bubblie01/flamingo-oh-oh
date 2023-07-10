@@ -1,0 +1,19 @@
+{
+  "effect.flamingoh.shrimp_effect": "Flamenqués",
+
+  "entity.flamingoh.flamingo": "Flamenco",
+
+  "item.flamingoh.flamingo_spawn_egg": "Generar flamenco",
+  "item.flamingoh.flamingo_egg": "Huevo de flamenco",
+  "item.flamingoh.pink_feather": "Pluma rosa",
+
+  "item.flamingoh.shrimp": "Camarón crudo",
+  "item.flamingoh.cooked_shrimp": "Camarón cocinado",
+  "item.flamingoh.shrimp_cocktail": "Cóctel de camarones",
+
+  "item.flamingoh.suspicious_chicken": "Pollo sospechoso",
+  "item.flamingoh.cooked_suspicious_chicken": "Pollo sospechoso cocinado",
+
+  "subtitle.flamingo.ambient": "Graznido de flamenco",
+  "subtitle.flamingo.baby.ambient": "Piar de flamenco bebé"
+}

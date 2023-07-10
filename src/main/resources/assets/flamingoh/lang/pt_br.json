@@ -1,0 +1,21 @@
+{
+  "_credit": "Translations provided by SegaSaturn",
+
+  "effect.flamingoh.shrimp_effect": "Flamingado",
+
+  "entity.flamingoh.flamingo": "Flamingo",
+
+  "item.flamingoh.flamingo_spawn_egg": "Ovo gerador de flamingo",
+  "item.flamingoh.flamingo_egg": "Ovo de flamingo",
+  "item.flamingoh.pink_feather": "Pena rosa",
+
+  "item.flamingoh.shrimp": "Camarão cru",
+  "item.flamingoh.cooked_shrimp": "Camarão assado",
+  "item.flamingoh.shrimp_cocktail": "Coquetel de camarão",
+
+  "item.flamingoh.suspicious_chicken": "Frango suspeito",
+  "item.flamingoh.cooked_suspicious_chicken": "Frango suspeito assado",
+
+  "subtitle.flamingo.ambient": "Grasno de flamingo",
+  "subtitle.flamingo.baby.ambient": "Pio de filhote de flamingo"
+}
