@@ -48,6 +48,9 @@ public class FlamingohRegistry {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(content -> {
 			content.addItem(PINK_FEATHER);
 		});
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(content -> {
+			content.addItem(FLAMINGO_EGG_ITEM);
+		});
 	}
 
 	public static void registerRecipies() {

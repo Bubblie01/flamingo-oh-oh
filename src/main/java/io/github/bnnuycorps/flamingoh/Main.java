@@ -31,7 +31,7 @@ public class Main implements ModInitializer {
 		FlamingohRegistry.registerItems();
 		FlamingohRegistry.registerRecipies();
 		FlamingohRegistry.registerStatusEffects();
-		BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.SWAMP), SpawnGroup.CREATURE, FlamingoEntity.FLAMINGO_ENTITY_TYPE, 15, 4, 4);
+		BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.SWAMP, Biomes.MANGROVE_SWAMP), SpawnGroup.CREATURE, FlamingoEntity.FLAMINGO_ENTITY_TYPE, 15, 4, 4);
 		SpawnRestriction.register(FlamingoEntity.FLAMINGO_ENTITY_TYPE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, FlamingoEntity::isValidNaturalSpawn);
 
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
