@@ -1,0 +1,14 @@
+{
+  "flamingo_ambient": {
+    "subtitle": "subtitles.flamingoh.flamingo_ambient",
+    "sounds": [
+      "flamingoh:flamingo_ambient"
+    ]
+  },
+  "flamingo_hurt": {
+    "subtitle": "subtitles.flamingoh.flamingo_hurt",
+    "sounds": [
+      "flamingoh:flamingo_hurt"
+    ]
+  }
+}

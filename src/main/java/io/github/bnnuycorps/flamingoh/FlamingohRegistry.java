@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 
@@ -31,6 +32,11 @@ public class FlamingohRegistry {
 
 	public static final StatusEffect SHRIMP_STATUS_EFFECT = new ShrimpStatusEffect();
 
+	public static final Identifier FLAMINGO_AMBIENT_SOUND_ID = new Identifier(Main.MOD_ID, "flamingo_ambient");
+	public static final SoundEvent FLAMINGO_AMBIENT_SOUND_EVENT = SoundEvent.createVariableRangeEvent(FLAMINGO_AMBIENT_SOUND_ID);
+
+	public static final Identifier FLAMINGO_HURT_SOUND_ID = new Identifier(Main.MOD_ID, "flamingo_hurt");
+	public static final SoundEvent FLAMINGO_HURT_SOUND_EVENT = SoundEvent.createVariableRangeEvent(FLAMINGO_HURT_SOUND_ID);
 	public static void registerItems() {
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "shrimp_cocktail"), FLAMINGO_COCKTAIL);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "pink_feather"), PINK_FEATHER);
@@ -60,5 +66,10 @@ public class FlamingohRegistry {
 
 	public static void registerStatusEffects() {
 		Registry.register(Registries.STATUS_EFFECT, new Identifier(Main.MOD_ID, "shrimp_effect"), SHRIMP_STATUS_EFFECT);
+	}
+
+	public static void registerSounds() {
+		Registry.register(Registries.SOUND_EVENT, FLAMINGO_AMBIENT_SOUND_ID, FLAMINGO_AMBIENT_SOUND_EVENT);
+		Registry.register(Registries.SOUND_EVENT, FLAMINGO_HURT_SOUND_ID, FLAMINGO_HURT_SOUND_EVENT);
 	}
 }

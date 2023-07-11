@@ -30,6 +30,7 @@ public class Main implements ModInitializer {
 		FlamingoEntity.registerFlamingoEntityAttributes();
 		FlamingohRegistry.registerItems();
 		FlamingohRegistry.registerStatusEffects();
+		FlamingohRegistry.registerSounds();
 		BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.SWAMP), SpawnGroup.CREATURE, FlamingoEntity.FLAMINGO_ENTITY_TYPE, 15, 4, 8);
 		BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.MANGROVE_SWAMP), SpawnGroup.CREATURE, FlamingoEntity.FLAMINGO_ENTITY_TYPE, 15, 4, 8);
 		SpawnRestriction.register(FlamingoEntity.FLAMINGO_ENTITY_TYPE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING, FlamingoEntity::isValidNaturalSpawn);

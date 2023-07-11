@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +20,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -85,36 +87,48 @@ public class FlamingoEntity extends AnimalEntity {
 		}
 	}
 
-		@Override
-		public void travel (Vec3d movementInput){
-			super.travel(movementInput);
-			if (this.isTouchingWater())
-				this.updateVelocity(0.1f, movementInput);
+
+	@Override
+	public void travel(Vec3d movementInput){
+		super.travel(movementInput);
+		if (this.isTouchingWater())
+			this.updateVelocity(0.1f, movementInput);
 
 
-		}
+	}
 
-		@Override
-		public void writeCustomDataToNbt (NbtCompound nbt){
-			super.writeCustomDataToNbt(nbt);
-			nbt.putInt("EggLayTime", this.eggLayTime);
-		}
-		@Override
-		public void readCustomDataFromNbt (NbtCompound nbt){
-			super.readCustomDataFromNbt(nbt);
-			if (nbt.contains("EggLayTime")) {
+	@Override
+	public void writeCustomDataToNbt(NbtCompound nbt){
+		super.writeCustomDataToNbt(nbt);
+		nbt.putInt("EggLayTime", this.eggLayTime);
+	}
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt){
+		super.readCustomDataFromNbt(nbt);
+		if (nbt.contains("EggLayTime")) {
 				this.eggLayTime = nbt.getInt("EggLayTime");
-			}
-		}
-
-
-		@Override
-		public boolean isBreedingItem (ItemStack stack){
-			return stack.isOf(FlamingohRegistry.SHRIMP_ITEM);
-		}
-
-		public static void registerFlamingoEntityAttributes () {
-			FabricDefaultAttributeRegistry.register(FLAMINGO_ENTITY_TYPE, createAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5.0f).add(EntityAttributes.GENERIC_MAX_HEALTH, 8f));
 		}
 	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return FlamingohRegistry.FLAMINGO_AMBIENT_SOUND_EVENT;
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return FlamingohRegistry.FLAMINGO_HURT_SOUND_EVENT;
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack){
+		return stack.isOf(FlamingohRegistry.SHRIMP_ITEM);
+	}
+
+	public static void registerFlamingoEntityAttributes() {
+		FabricDefaultAttributeRegistry.register(FLAMINGO_ENTITY_TYPE, createAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5.0f).add(EntityAttributes.GENERIC_MAX_HEALTH, 8f));
+	}
+}
 
