@@ -4,9 +4,7 @@ import io.github.bnnuycorps.flamingoh.FlamingohRegistry;
 import io.github.bnnuycorps.flamingoh.Main;
 import io.github.bnnuycorps.flamingoh.entities.ai.FlamingoSwimGoal;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -14,27 +12,28 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.entity.api.QuiltEntityTypeBuilder;
-import org.quiltmc.qsl.entity.impl.QuiltEntityType;
 
 public class FlamingoEntity extends AnimalEntity {
 
-	public static final EntityType<FlamingoEntity> FLAMINGO_ENTITY_TYPE = Registry.register(Registries.ENTITY_TYPE, new Identifier(Main.MOD_ID, "flamingo_entity"), QuiltEntityTypeBuilder.create(SpawnGroup.CREATURE, FlamingoEntity::new).setDimensions(EntityDimensions.changing(1.0f, 2.1f)).build());
+	public static final EntityType<FlamingoEntity> FLAMINGO_ENTITY_TYPE = Registry.register(Registries.ENTITY_TYPE, new Identifier(Main.MOD_ID, "flamingo_entity"), QuiltEntityTypeBuilder.create(SpawnGroup.AMBIENT, FlamingoEntity::new).setDimensions(EntityDimensions.changing(1.0f, 2.1f)).build());
 
 	public float flapProgress;
 	public float maxWingDeviation;
@@ -89,7 +88,7 @@ public class FlamingoEntity extends AnimalEntity {
 
 
 	@Override
-	public void travel(Vec3d movementInput){
+	public void travel(Vec3d movementInput) {
 		super.travel(movementInput);
 		if (this.isTouchingWater())
 			this.updateVelocity(0.1f, movementInput);
@@ -98,15 +97,16 @@ public class FlamingoEntity extends AnimalEntity {
 	}
 
 	@Override
-	public void writeCustomDataToNbt(NbtCompound nbt){
+	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putInt("EggLayTime", this.eggLayTime);
 	}
+
 	@Override
-	public void readCustomDataFromNbt(NbtCompound nbt){
+	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		if (nbt.contains("EggLayTime")) {
-				this.eggLayTime = nbt.getInt("EggLayTime");
+			this.eggLayTime = nbt.getInt("EggLayTime");
 		}
 	}
 
@@ -123,12 +123,28 @@ public class FlamingoEntity extends AnimalEntity {
 	}
 
 	@Override
-	public boolean isBreedingItem(ItemStack stack){
+	protected float getSoundVolume() { return 0.4f; }
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack) {
 		return stack.isOf(FlamingohRegistry.SHRIMP_ITEM);
 	}
 
 	public static void registerFlamingoEntityAttributes() {
 		FabricDefaultAttributeRegistry.register(FLAMINGO_ENTITY_TYPE, createAttributes().add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25f).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 5.0f).add(EntityAttributes.GENERIC_MAX_HEALTH, 8f));
 	}
+
+	public boolean isPushedByFluids() {
+		return false;
+	}
+
+	public static boolean canSpawn(EntityType<? extends AnimalEntity> entity, WorldAccess world, SpawnReason reason, BlockPos pos, RandomGenerator random) {
+		return world.getBlockState(pos.down()).isIn(BlockTags.FROGS_SPAWNABLE_ON) && isBrightEnoughForNaturalSpawn(world, pos);
+	}
+
 }
+
+
+
+
 

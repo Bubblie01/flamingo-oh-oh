@@ -23,6 +23,7 @@ public class FlamingohRegistry {
 	private static final FoodComponent SHRIMP_COMPONENT = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
 	public static final Item FLAMINGO_COCKTAIL = new MushroomStewItem(new Item.Settings());
 	public static final Item SHRIMP_ITEM = new ShrimpItem(new Item.Settings().food(SHRIMP_COMPONENT));
+	public static final Item COOKED_SHRIMP_ITEM = new ShrimpItem(new Item.Settings().food(FoodComponents.COOKED_SALMON));
 
 	public static final Item SUSPICIOUS_CHICKEN = new Item(new Item.Settings().food(FoodComponents.CHICKEN));
 	public static final Item COOKED_SUSPICIOUS_CHICKEN = new Item(new Item.Settings().food(FoodComponents.COOKED_CHICKEN));
@@ -42,6 +43,7 @@ public class FlamingohRegistry {
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "pink_feather"), PINK_FEATHER);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "flamingo_egg"), FLAMINGO_EGG_ITEM);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "shrimp"), SHRIMP_ITEM);
+		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "cooked_shrimp"), COOKED_SHRIMP_ITEM);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "flamingo_spawn_egg"), FLAMINGO_SPAWN_EGG);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "suspicious_chicken"), SUSPICIOUS_CHICKEN);
 		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "cooked_suspicious_chicken"), COOKED_SUSPICIOUS_CHICKEN);
@@ -55,7 +57,7 @@ public class FlamingohRegistry {
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINKS).register(entries -> entries.addAfter(
 			Items.RABBIT_STEW, FLAMINGO_COCKTAIL));
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINKS).register(entries -> entries.addAfter(
-			Items.PUFFERFISH, SHRIMP_ITEM));
+			Items.COOKED_SALMON, SHRIMP_ITEM, COOKED_SHRIMP_ITEM));
 
 		ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> entries.addAfter(
 			Items.FEATHER, PINK_FEATHER));
@@ -72,4 +74,5 @@ public class FlamingohRegistry {
 		Registry.register(Registries.SOUND_EVENT, FLAMINGO_AMBIENT_SOUND_ID, FLAMINGO_AMBIENT_SOUND_EVENT);
 		Registry.register(Registries.SOUND_EVENT, FLAMINGO_HURT_SOUND_ID, FLAMINGO_HURT_SOUND_EVENT);
 	}
+
 }
