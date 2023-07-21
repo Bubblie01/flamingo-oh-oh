@@ -1,16 +1,21 @@
 package io.github.bnnuycorps.flamingoh;
 
+import io.github.bnnuycorps.flamingoh.blocks.GardenFlamingoBlock;
 import io.github.bnnuycorps.flamingoh.effects.ShrimpStatusEffect;
 import io.github.bnnuycorps.flamingoh.entities.FlamingoEntity;
 import io.github.bnnuycorps.flamingoh.items.FlamingoEggItem;
 import io.github.bnnuycorps.flamingoh.items.ShrimpItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
+import org.quiltmc.qsl.item.setting.api.QuiltItemSettings;
 
 
 public class FlamingohRegistry {
@@ -31,6 +36,7 @@ public class FlamingohRegistry {
 	public static final Item PINK_FEATHER = new Item(new Item.Settings());
 	public static final Item FLAMINGO_EGG_ITEM = new FlamingoEggItem(new Item.Settings());
 
+	public static final Block GARDEN_FLAMINGO_BLOCK = new GardenFlamingoBlock(QuiltBlockSettings.copyOf(Blocks.STONE));
 	public static final StatusEffect SHRIMP_STATUS_EFFECT = new ShrimpStatusEffect();
 
 	public static final Identifier FLAMINGO_AMBIENT_SOUND_ID = new Identifier(Main.MOD_ID, "flamingo_ambient");
@@ -73,6 +79,11 @@ public class FlamingohRegistry {
 	public static void registerSounds() {
 		Registry.register(Registries.SOUND_EVENT, FLAMINGO_AMBIENT_SOUND_ID, FLAMINGO_AMBIENT_SOUND_EVENT);
 		Registry.register(Registries.SOUND_EVENT, FLAMINGO_HURT_SOUND_ID, FLAMINGO_HURT_SOUND_EVENT);
+	}
+
+	public static void registerBlocks() {
+		Registry.register(Registries.BLOCK, new Identifier(Main.MOD_ID, "garden_flamingo"), GARDEN_FLAMINGO_BLOCK);
+		Registry.register(Registries.ITEM, new Identifier(Main.MOD_ID, "garden_flamingo"), new BlockItem(GARDEN_FLAMINGO_BLOCK, new QuiltItemSettings()));
 	}
 
 }

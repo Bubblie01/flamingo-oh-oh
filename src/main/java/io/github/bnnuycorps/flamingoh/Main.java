@@ -20,6 +20,7 @@ public class Main implements ModInitializer {
 		FlamingohRegistry.registerItems();
 		FlamingohRegistry.registerStatusEffects();
 		FlamingohRegistry.registerSounds();
+		FlamingohRegistry.registerBlocks();
 		FlamingoSpawning.addSpawnEntries();
 
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
